@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:taschenwoerterbuch/core/theme/app_colors.dart';
 import 'package:taschenwoerterbuch/core/theme/app_theme.dart';
 import 'package:taschenwoerterbuch/core/theme/app_typography.dart';
 import 'package:taschenwoerterbuch/features/search/search_screen.dart';
+import 'package:taschenwoerterbuch/l10n/generated/app_localizations.dart';
 import 'package:taschenwoerterbuch/shared/widgets/sketch_button.dart';
 import 'package:taschenwoerterbuch/shared/widgets/sketch_dialog.dart';
 import 'package:taschenwoerterbuch/shared/widgets/sketch_nav_bar.dart';
@@ -20,7 +22,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Taschenwörterbuch',
+      onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
+      locale: const Locale('de'),
+      supportedLocales: AppLocalizations.supportedLocales,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       home: const SearchScreen(),

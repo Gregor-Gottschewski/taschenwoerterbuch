@@ -150,7 +150,7 @@ class _SketchSpinnerState extends State<SketchSpinner>
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: 'Lädt',
+      label: AppLocalizations.of(context).loading,
       child: SizedBox.square(
         dimension: widget.size,
         child: CustomPaint(

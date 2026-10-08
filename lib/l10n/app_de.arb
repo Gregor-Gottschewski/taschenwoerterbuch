@@ -1,0 +1,36 @@
+{
+  "@@locale": "de",
+  "appTitle": "Taschenwörterbuch",
+  "searchTitle": "Wörterbuch",
+  "searchHint": "Wort suchen …",
+  "dictionaryLoadError": "Wörterbuch nicht ladbar: {error}",
+  "@dictionaryLoadError": {
+    "placeholders": { "error": { "type": "Object" } }
+  },
+  "entryLoadError": "Eintrag nicht ladbar: {error}",
+  "@entryLoadError": {
+    "placeholders": { "error": { "type": "Object" } }
+  },
+  "back": "← Zurück",
+  "senses": "Bedeutungen",
+  "pluralAbbr": "Pl.: {plural}",
+  "@pluralAbbr": {
+    "placeholders": { "plural": { "type": "String" } }
+  },
+  "auxiliaryVerb": "Hilfsverb: {auxiliary}",
+  "@auxiliaryVerb": {
+    "placeholders": { "auxiliary": { "type": "String" } }
+  },
+  "audioUnavailable": "Audio nicht verfügbar",
+  "playPronunciation": "Aussprache abspielen",
+  "loading": "Lädt",
+  "percentValue": "{percent} %",
+  "@percentValue": {
+    "placeholders": { "percent": { "type": "int" } }
+  },
+  "posNoun": "Nomen",
+  "posVerb": "Verb",
+  "posAdjective": "Adjektiv",
+  "posAdverb": "Adverb",
+  "posProperNoun": "Eigenname"
+}

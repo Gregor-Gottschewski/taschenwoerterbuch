@@ -47,6 +47,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final hits = ref.watch(searchControllerProvider);
     return Scaffold(
       body: SafeArea(
@@ -58,7 +59,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
               Semantics(
                 header: true,
                 child: Text(
-                  'Wörterbuch',
+                  l10n.searchTitle,
                   style: AppTypography.headlineSerif.copyWith(
                     color: context.colors.textPrimary,
                   ),
@@ -69,7 +70,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                   data: (list) =>
                       ListView(children: [for (final h in list) Text(h.term)]),
                   loading: () => const Center(child: SketchSpinner()),
-                  error: (e, _) => Text('Wörterbuch nicht ladbar: $e'),
+                  error: (e, _) => Text(l10n.dictionaryLoadError(e)),
                 ),
               ),
               Row(
