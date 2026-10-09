@@ -1,0 +1,81 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:taschenwoerterbuch/data/dictionary_providers.dart';
+import 'package:taschenwoerterbuch/data/models/entry.dart';
+import 'package:taschenwoerterbuch/data/models/lang_pair.dart';
+
+/// Identifies a dictionary entry: its row [id] within the database of [pair].
+typedef EntryKey = ({int id, LangPair pair});
+
+/// Loads a complete [Entry] for the given [EntryKey].
+///
+/// Reads the entry row, its senses ordered by position, and the translations
+/// and definitions of each sense.
+///
+/// Throws a [StateError] if no entry with the given id exists.
+final entryProvider = FutureProvider.family<Entry, EntryKey>((ref, key) async {
+  final db = await ref.watch(dictionaryDbProvider(key.pair).future);
+
+  final entryRows = await db.query(
+    'entry',
+    where: 'id = ?',
+    whereArgs: [key.id],
+    limit: 1,
+  );
+  if (entryRows.isEmpty) {
+    throw StateError('Eintrag ${key.id} nicht gefunden');
+  }
+  final e = entryRows.first;
+
+  final senseRows = await db.query(
+    'sense',
+    columns: ['id'],
+    where: 'entry_id = ?',
+    whereArgs: [key.id],
+    orderBy: 'position',
+  );
+  final senseIds = [for (final r in senseRows) r['id']! as int];
+
+  /// Fetches all texts from [table] (`translation` or `definition`) in one
+  /// query, grouped by sense id and ordered by position. Every sense id is
+  /// present in the result, with an empty list if it has no texts.
+  Future<Map<int, List<String>>> texts(String table) async {
+    final result = {for (final id in senseIds) id: <String>[]};
+    if (senseIds.isEmpty) return result;
+    final rows = await db.query(
+      table,
+      columns: ['sense_id', 'text'],
+      where: 'sense_id IN (${List.filled(senseIds.length, '?').join(',')})',
+      whereArgs: senseIds,
+      orderBy: 'sense_id, position',
+    );
+    for (final r in rows) {
+      result[r['sense_id']! as int]!.add(r['text']! as String);
+    }
+    return result;
+  }
+
+  final translations = await texts('translation');
+  final definitions = await texts('definition');
+
+  /// Returns the trimmed value of [column] in the entry row, or `null` if it
+  /// is missing or blank.
+  String? str(String column) {
+    final v = e[column] as String?;
+    return (v == null || v.trim().isEmpty) ? null : v.trim();
+  }
+
+  return Entry(
+    id: key.id,
+    lemma: e['lemma']! as String,
+    pos: str('pos'),
+    gender: str('gender'),
+    plural: str('plural'),
+    ipa: str('ipa'),
+    audioUrl: str('audio_url'),
+    auxiliary: str('auxiliary'),
+    senses: [
+      for (final id in senseIds)
+        Sense(translations: translations[id]!, definitions: definitions[id]!),
+    ],
+  );
+});

@@ -14,15 +14,19 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  connectivity_plus: ^7.3.2
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
   flutter_riverpod: ^3.4.3
   intl: any
+  just_audio: ^0.10.6
   path: ^1.9.1
   path_provider: ^2.1.6
   sqflite: ^2.4.4+1
+  unorm_dart: ^0.3.3
+  volume_controller: ^3.7.1
 
 dev_dependencies:
   flutter_test:

@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:taschenwoerterbuch/core/theme/app_colors.dart';
 import 'package:taschenwoerterbuch/core/theme/app_typography.dart';
+import 'package:taschenwoerterbuch/data/models/entry.dart';
 import 'package:taschenwoerterbuch/data/models/lang_pair.dart';
+import 'package:taschenwoerterbuch/features/detail/detail_screen.dart';
 import 'package:taschenwoerterbuch/features/search/search_controller.dart';
 import 'package:taschenwoerterbuch/features/search/widgets/direction_switch.dart';
 import 'package:taschenwoerterbuch/features/search/widgets/search_bar_bottom.dart';
+import 'package:taschenwoerterbuch/l10n/generated/app_localizations.dart';
 
 import '../../shared/widgets/sketch_progress_indicator.dart';
 
@@ -38,6 +41,23 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     _onQueryChanged();
   }
 
+  String _hitLabel(AppLocalizations l10n, SearchHit hit) {
+    final labels = {for (final e in hit.entries) ?posLabel(l10n, e.pos)};
+    return labels.isEmpty ? hit.term : '${hit.term} (${labels.join(', ')})';
+  }
+
+  void _openDetail(SearchHit hit) {
+    FocusScope.of(context).unfocus();
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => DetailScreen(
+          entryIds: [for (final e in hit.entries) e.id],
+          pair: _pair,
+        ),
+      ),
+    );
+  }
+
   @override
   void dispose() {
     _searchTextController.removeListener(_onQueryChanged);
@@ -67,8 +87,26 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
               ),
               Expanded(
                 child: hits.when(
-                  data: (list) =>
-                      ListView(children: [for (final h in list) Text(h.term)]),
+                  data: (list) => ListView.builder(
+                    itemCount: list.length,
+                    itemBuilder: (context, i) {
+                      final h = list[i];
+                      return Semantics(
+                        button: true,
+                        child: GestureDetector(
+                          behavior: HitTestBehavior.opaque,
+                          onTap: () => _openDetail(h),
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints(minHeight: 44),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(_hitLabel(l10n, h)),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                   loading: () => const Center(child: SketchSpinner()),
                   error: (e, _) => Text(l10n.dictionaryLoadError(e)),
                 ),
