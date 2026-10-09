@@ -6,6 +6,8 @@ import 'package:taschenwoerterbuch/shared/widgets/sketch_text_field.dart';
 class SearchBarBottom extends StatelessWidget {
   const SearchBarBottom({super.key, required this.controller, this.onChanged});
 
+  static const height = 64.0;
+
   final TextEditingController controller;
   final ValueChanged<String>? onChanged;
 
@@ -15,6 +17,7 @@ class SearchBarBottom extends StatelessWidget {
       controller: controller,
       hint: AppLocalizations.of(context).searchHint,
       onChanged: onChanged,
+      minHeight: height,
     );
   }
 }

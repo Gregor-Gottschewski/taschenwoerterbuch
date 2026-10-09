@@ -10,6 +10,7 @@ class SketchPainter extends CustomPainter {
     required this.stroke,
     this.strokeWidth = 2,
     this.roughness = 1.8,
+    this.wobbleLength = 60,
     this.scribbleWidth = 6,
     this.overshoot = 5,
     this.shadow = Offset.zero,
@@ -19,7 +20,7 @@ class SketchPainter extends CustomPainter {
   final int seed;
   final Color? paper, scribble;
   final Color stroke;
-  final double strokeWidth, roughness, scribbleWidth, overshoot;
+  final double strokeWidth, roughness, wobbleLength, scribbleWidth, overshoot;
   final Offset shadow;
 
   final bool outline;
@@ -30,8 +31,18 @@ class SketchPainter extends CustomPainter {
     final p = Path()..moveTo(pts[0].dx + j(), pts[0].dy + j());
     for (var i = 1; i <= 4; i++) {
       final a = pts[i - 1], b = pts[i % 4];
-      final m = Offset.lerp(a, b, .5)!;
-      p.quadraticBezierTo(m.dx + j(), m.dy + j(), b.dx + j(), b.dy + j());
+      // Long edges are split so they wobble as much as short ones.
+      final segments = max(1, ((b - a).distance / wobbleLength).round());
+      for (var s = 1; s <= segments; s++) {
+        final from = Offset.lerp(a, b, (s - .5) / segments)!;
+        final to = Offset.lerp(a, b, s / segments)!;
+        p.quadraticBezierTo(
+          from.dx + j(),
+          from.dy + j(),
+          to.dx + j(),
+          to.dy + j(),
+        );
+      }
     }
     return p;
   }
@@ -128,10 +139,6 @@ class SketchPainter extends CustomPainter {
       ..strokeWidth = strokeWidth
       ..strokeCap = StrokeCap.round;
     canvas.drawPath(_wobblyRect(rect, Random(seed)), line);
-    canvas.drawPath(
-      _wobblyRect(rect, Random(seed + 99)),
-      line..strokeWidth = strokeWidth * .6,
-    );
   }
 
   @override
@@ -142,6 +149,7 @@ class SketchPainter extends CustomPainter {
       o.stroke != stroke ||
       o.strokeWidth != strokeWidth ||
       o.roughness != roughness ||
+      o.wobbleLength != wobbleLength ||
       o.scribbleWidth != scribbleWidth ||
       o.overshoot != overshoot ||
       o.shadow != shadow ||

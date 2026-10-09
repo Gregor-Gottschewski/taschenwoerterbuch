@@ -34,7 +34,6 @@ class _SketchButtonState extends State<SketchButton> {
               seed: widget.label.hashCode,
               stroke: colors.sketchStroke,
               scribble: enabled ? colors.scribble : colors.scribbleDisabled,
-              shadow: _down ? Offset.zero : const Offset(3, 3),
             ),
             child: ConstrainedBox(
               constraints: const BoxConstraints(minHeight: 64, minWidth: 112),

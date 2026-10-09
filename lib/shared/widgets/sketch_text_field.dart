@@ -16,6 +16,7 @@ class SketchTextField extends StatefulWidget {
     this.onChanged,
     this.keyboardType,
     this.inputFormatters,
+    this.minHeight = 56,
   });
 
   final String? label;
@@ -27,6 +28,7 @@ class SketchTextField extends StatefulWidget {
   final ValueChanged<String>? onChanged;
   final TextInputType? keyboardType;
   final List<TextInputFormatter>? inputFormatters;
+  final double minHeight;
 
   @override
   State<SketchTextField> createState() => _SketchTextFieldState();
@@ -79,9 +81,9 @@ class _SketchTextFieldState extends State<SketchTextField> {
             stroke: hasError ? colors.danger : colors.sketchStroke,
           ),
           child: ConstrainedBox(
-            constraints: const BoxConstraints(minHeight: 56),
+            constraints: BoxConstraints(minHeight: widget.minHeight),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 26),
               child: Center(
                 child: TextField(
                   controller: widget.controller,
