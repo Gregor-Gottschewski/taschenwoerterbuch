@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:taschenwoerterbuch/l10n/generated/app_localizations.dart';
 import 'package:taschenwoerterbuch/shared/widgets/sketch_text_field.dart';
 
-/// Suchleiste für den Footer des Such-Screens.
+/// Searchbar in the app's footer.
 class SearchBarBottom extends StatelessWidget {
   const SearchBarBottom({super.key, required this.controller, this.onChanged});
 

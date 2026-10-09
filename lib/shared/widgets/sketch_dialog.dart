@@ -13,7 +13,6 @@ class SketchDialog extends StatelessWidget {
   final String title;
   final Widget? content;
 
-  /// Üblicherweise [SketchButton]s.
   final List<Widget> actions;
 
   @override

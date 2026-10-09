@@ -22,7 +22,6 @@ class SketchPainter extends CustomPainter {
   final double strokeWidth, roughness, scribbleWidth, overshoot;
   final Offset shadow;
 
-  /// Wenn false, wird nur Papier/Schraffur ohne Rahmenlinie gezeichnet.
   final bool outline;
 
   Path _wobblyRect(Rect r, Random rnd) {
@@ -37,8 +36,6 @@ class SketchPainter extends CustomPainter {
     return p;
   }
 
-  /// Eine Zickzack-Schraffur. [slant] = horizontale Schräge über die Höhe,
-  /// [from]/[to] begrenzen den bemalten Bereich (0..1 der Breite).
   void _scribblePass(
     Canvas canvas,
     Rect r,

@@ -20,12 +20,12 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String dictionaryLoadError(Object error) {
-    return 'Wörterbuch nicht ladbar: $error';
+    return 'Wörterbuch leider nicht ladbar: $error';
   }
 
   @override
   String entryLoadError(Object error) {
-    return 'Eintrag nicht ladbar: $error';
+    return 'Eintrag leider nicht ladbar: $error';
   }
 
   @override
@@ -36,7 +36,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String pluralAbbr(String plural) {
-    return 'Pl.: $plural';
+    return 'Plural: $plural';
   }
 
   @override
@@ -45,7 +45,13 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get audioUnavailable => 'Audio nicht verfügbar';
+  String get audioUnavailable => 'Audio ist nicht verfügbar';
+
+  @override
+  String get noInternet => 'Keine Internetverbindung';
+
+  @override
+  String get volumeMuted => 'Dein Ton ist stummgeschaltet';
 
   @override
   String get playPronunciation => 'Aussprache abspielen';
@@ -72,4 +78,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get posProperNoun => 'Eigenname';
+
+  @override
+  String get listen => 'Anhören';
 }

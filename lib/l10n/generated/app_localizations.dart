@@ -115,13 +115,13 @@ abstract class AppLocalizations {
   /// No description provided for @dictionaryLoadError.
   ///
   /// In de, this message translates to:
-  /// **'Wörterbuch nicht ladbar: {error}'**
+  /// **'Wörterbuch leider nicht ladbar: {error}'**
   String dictionaryLoadError(Object error);
 
   /// No description provided for @entryLoadError.
   ///
   /// In de, this message translates to:
-  /// **'Eintrag nicht ladbar: {error}'**
+  /// **'Eintrag leider nicht ladbar: {error}'**
   String entryLoadError(Object error);
 
   /// No description provided for @back.
@@ -139,7 +139,7 @@ abstract class AppLocalizations {
   /// No description provided for @pluralAbbr.
   ///
   /// In de, this message translates to:
-  /// **'Pl.: {plural}'**
+  /// **'Plural: {plural}'**
   String pluralAbbr(String plural);
 
   /// No description provided for @auxiliaryVerb.
@@ -151,8 +151,20 @@ abstract class AppLocalizations {
   /// No description provided for @audioUnavailable.
   ///
   /// In de, this message translates to:
-  /// **'Audio nicht verfügbar'**
+  /// **'Audio ist nicht verfügbar'**
   String get audioUnavailable;
+
+  /// No description provided for @noInternet.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Internetverbindung'**
+  String get noInternet;
+
+  /// No description provided for @volumeMuted.
+  ///
+  /// In de, this message translates to:
+  /// **'Dein Ton ist stummgeschaltet'**
+  String get volumeMuted;
 
   /// No description provided for @playPronunciation.
   ///
@@ -201,6 +213,12 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Eigenname'**
   String get posProperNoun;
+
+  /// No description provided for @listen.
+  ///
+  /// In de, this message translates to:
+  /// **'Anhören'**
+  String get listen;
 }
 
 class _AppLocalizationsDelegate

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:taschenwoerterbuch/data/models/lang_pair.dart';
 import 'package:taschenwoerterbuch/shared/widgets/sketch_button.dart';
 
-/// Zeigt die aktuelle Suchrichtung und wechselt sie per Tap.
+/// Shows the current language direction and switches on tab.
 class DirectionSwitch extends StatelessWidget {
   const DirectionSwitch({
     super.key,

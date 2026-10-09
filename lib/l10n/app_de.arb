@@ -3,17 +3,17 @@
   "appTitle": "Taschenwörterbuch",
   "searchTitle": "Wörterbuch",
   "searchHint": "Wort suchen …",
-  "dictionaryLoadError": "Wörterbuch nicht ladbar: {error}",
+  "dictionaryLoadError": "Wörterbuch leider nicht ladbar: {error}",
   "@dictionaryLoadError": {
     "placeholders": { "error": { "type": "Object" } }
   },
-  "entryLoadError": "Eintrag nicht ladbar: {error}",
+  "entryLoadError": "Eintrag leider nicht ladbar: {error}",
   "@entryLoadError": {
     "placeholders": { "error": { "type": "Object" } }
   },
   "back": "← Zurück",
   "senses": "Bedeutungen",
-  "pluralAbbr": "Pl.: {plural}",
+  "pluralAbbr": "Plural: {plural}",
   "@pluralAbbr": {
     "placeholders": { "plural": { "type": "String" } }
   },
@@ -21,7 +21,9 @@
   "@auxiliaryVerb": {
     "placeholders": { "auxiliary": { "type": "String" } }
   },
-  "audioUnavailable": "Audio nicht verfügbar",
+  "audioUnavailable": "Audio ist nicht verfügbar",
+  "noInternet": "Keine Internetverbindung",
+  "volumeMuted": "Dein Ton ist stummgeschaltet",
   "playPronunciation": "Aussprache abspielen",
   "loading": "Lädt",
   "percentValue": "{percent} %",
@@ -32,5 +34,6 @@
   "posVerb": "Verb",
   "posAdjective": "Adjektiv",
   "posAdverb": "Adverb",
-  "posProperNoun": "Eigenname"
+  "posProperNoun": "Eigenname",
+  "listen": "Anhören"
 }
