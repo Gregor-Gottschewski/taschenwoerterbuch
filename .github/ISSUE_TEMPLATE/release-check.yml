@@ -1,0 +1,52 @@
+name: Release Check
+description: Checklist for preparing a release.
+title: "[Release]: "
+labels: ["release"]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: 1.0.0+1
+    validations:
+      required: true
+  - type: input
+    id: target_date
+    attributes:
+      label: Target date
+      placeholder: YYYY-MM-DD
+  - type: checkboxes
+    id: code
+    attributes:
+      label: Code and build
+      options:
+        - label: "`flutter analyze` reports no errors"
+        - label: Tests pass
+        - label: l10n files are generated and up to date
+        - label: "Version and build number bumped in `pubspec.yaml`"
+        - label: "`ios/Podfile.lock` is up to date"
+        - label: Release build runs on a real device
+  - type: checkboxes
+    id: smoke
+    attributes:
+      label: Smoke test
+      options:
+        - label: Search German → French
+        - label: Search French → German
+        - label: Detail view
+        - label: Conjugation tables
+        - label: Audio playback
+        - label: Offline behavior
+        - label: Light and dark mode
+  - type: checkboxes
+    id: publish
+    attributes:
+      label: Publishing
+      options:
+        - label: Changelog / release notes written
+        - label: App Store metadata and screenshots updated
+        - label: Git tag created
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes

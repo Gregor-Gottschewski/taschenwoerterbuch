@@ -1,0 +1,29 @@
+name: Design
+description: Change or improvement to UI, layout or styling.
+title: "[Design]: "
+labels: ["design"]
+body:
+  - type: input
+    id: screen
+    attributes:
+      label: Affected screen / component
+      placeholder: Detail view, SketchTextButton, …
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Current state
+      description: Screenshot or description of the current design.
+  - type: textarea
+    id: target
+    attributes:
+      label: Target state
+      description: How should it look and behave?
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: References / mockups
+      description: Links or images (Figma, sketches, inspirations).

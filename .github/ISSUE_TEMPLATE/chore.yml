@@ -1,0 +1,33 @@
+name: Chore
+description: Technical task without direct user impact (refactoring, dependencies, build, Flutter-Upgrade,...).
+title: "[Chore]: "
+labels: ["chore"]
+body:
+  - type: textarea
+    id: task
+    attributes:
+      label: Task
+      description: What needs to be done?
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      options:
+        - Refactoring
+        - Dependencies
+        - Build / CI
+        - Documentation
+        - Tests
+        - Data pipeline (scripts/)
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: tasks
+    attributes:
+      label: Task list
+      value: |
+        - [ ]
+        - [ ]
