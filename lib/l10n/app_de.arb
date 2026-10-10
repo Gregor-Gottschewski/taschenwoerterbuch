@@ -35,5 +35,23 @@
   "posAdjective": "Adjektiv",
   "posAdverb": "Adverb",
   "posProperNoun": "Eigenname",
-  "listen": "Anhören"
+  "listen": "Anhören",
+  "conjugations": "Konjugationen (über: {template})",
+  "@conjugations": {
+    "placeholders": { "template":  { "type":  "String" } }
+  },
+  "conjugationLoadError": "Konjugation leider nicht ladbar: {error}",
+  "@conjugationLoadError": {
+    "placeholders": { "error": { "type": "Object" } }
+  },
+  "tenseIndicativePresent": "Indikativ Présent",
+  "tenseIndicativeImperfect": "Indikativ Imparfait",
+  "tenseIndicativeSimplePast": "Indikativ Passé simple",
+  "tenseIndicativeFuture": "Indikativ Futur simple",
+  "tenseConditionalPresent": "Konditional Présent",
+  "tenseSubjunctivePresent": "Konjunktiv Présent",
+  "tenseSubjunctiveImperfect": "Konjunktiv Imperfekt",
+  "tenseImperative": "Imperativ",
+  "tensePastParticiple": "Partizip Perfekt",
+  "tensePresentParticiple": "Partizip Präsens"
 }

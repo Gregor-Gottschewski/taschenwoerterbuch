@@ -4,10 +4,12 @@ import 'package:taschenwoerterbuch/core/theme/app_colors.dart';
 import 'package:taschenwoerterbuch/core/theme/app_typography.dart';
 import 'package:taschenwoerterbuch/data/models/entry.dart';
 import 'package:taschenwoerterbuch/data/models/lang_pair.dart';
+import 'package:taschenwoerterbuch/features/conjugation/conjugation_screen.dart';
 import 'package:taschenwoerterbuch/features/detail/detail_controller.dart';
 import 'package:taschenwoerterbuch/l10n/generated/app_localizations.dart';
 import 'package:taschenwoerterbuch/shared/widgets/sketch_button.dart';
 import 'package:taschenwoerterbuch/shared/widgets/sketch_progress_indicator.dart';
+import 'package:taschenwoerterbuch/shared/widgets/sketch_text_button.dart';
 import 'package:taschenwoerterbuch/features/detail/widgets/speaker_button.dart';
 
 /// Detailed information screen for one or more dictionary entries.
@@ -68,7 +70,7 @@ class _EntrySection extends ConsumerWidget {
     return ref
         .watch(entryProvider((id: entryId, pair: pair)))
         .when(
-          data: (e) => _EntryView(entry: e),
+          data: (e) => _EntryView(entry: e, pair: pair),
           loading: () => const Center(child: SketchSpinner()),
           error: (e, _) => Text(AppLocalizations.of(context).entryLoadError(e)),
         );
@@ -81,14 +83,20 @@ class _EntrySection extends ConsumerWidget {
 /// gender, plural, auxiliary verb), an optional IPA pronunciation with a
 /// [SpeakerButton], and the numbered senses with their definitions.
 class _EntryView extends StatelessWidget {
-  const _EntryView({required this.entry});
+  const _EntryView({required this.entry, required this.pair});
 
   /// The entry to display.
   final Entry entry;
 
+  /// Language pair in which the entry is looked up.
+  final LangPair pair;
+
   /// Abbreviations for the gender values from the data. Unknown values are
   /// displayed unchanged.
   static const _genderLabels = {'masc': 'm', 'fem': 'f', 'neut': 'n'};
+
+  bool _conjugationAvailable() =>
+      entry.pos == 'verb' && entry.template != null && pair == LangPair.frDe;
 
   @override
   Widget build(BuildContext context) {
@@ -134,6 +142,16 @@ class _EntryView extends StatelessWidget {
                 SpeakerButton(audioUrl: entry.audioUrl!),
               ],
             ],
+          ),
+        if (_conjugationAvailable())
+          SketchTextButton(
+            label: l10n.conjugations(entry.template!.replaceAll(":", "")),
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) =>
+                    ConjugationScreen(entryId: entry.id, pair: pair),
+              ),
+            ),
           ),
         const SizedBox(height: 24),
         if (entry.senses.isNotEmpty)

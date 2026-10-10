@@ -73,6 +73,7 @@ final entryProvider = FutureProvider.family<Entry, EntryKey>((ref, key) async {
     ipa: str('ipa'),
     audioUrl: str('audio_url'),
     auxiliary: str('auxiliary'),
+    template: str('template'),
     senses: [
       for (final id in senseIds)
         Sense(translations: translations[id]!, definitions: definitions[id]!),

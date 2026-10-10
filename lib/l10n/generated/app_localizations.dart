@@ -219,6 +219,78 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Anhören'**
   String get listen;
+
+  /// No description provided for @conjugations.
+  ///
+  /// In de, this message translates to:
+  /// **'Konjugationen (über: {template})'**
+  String conjugations(String template);
+
+  /// No description provided for @conjugationLoadError.
+  ///
+  /// In de, this message translates to:
+  /// **'Konjugation leider nicht ladbar: {error}'**
+  String conjugationLoadError(Object error);
+
+  /// No description provided for @tenseIndicativePresent.
+  ///
+  /// In de, this message translates to:
+  /// **'Indikativ Présent'**
+  String get tenseIndicativePresent;
+
+  /// No description provided for @tenseIndicativeImperfect.
+  ///
+  /// In de, this message translates to:
+  /// **'Indikativ Imparfait'**
+  String get tenseIndicativeImperfect;
+
+  /// No description provided for @tenseIndicativeSimplePast.
+  ///
+  /// In de, this message translates to:
+  /// **'Indikativ Passé simple'**
+  String get tenseIndicativeSimplePast;
+
+  /// No description provided for @tenseIndicativeFuture.
+  ///
+  /// In de, this message translates to:
+  /// **'Indikativ Futur simple'**
+  String get tenseIndicativeFuture;
+
+  /// No description provided for @tenseConditionalPresent.
+  ///
+  /// In de, this message translates to:
+  /// **'Konditional Présent'**
+  String get tenseConditionalPresent;
+
+  /// No description provided for @tenseSubjunctivePresent.
+  ///
+  /// In de, this message translates to:
+  /// **'Konjunktiv Présent'**
+  String get tenseSubjunctivePresent;
+
+  /// No description provided for @tenseSubjunctiveImperfect.
+  ///
+  /// In de, this message translates to:
+  /// **'Konjunktiv Imperfekt'**
+  String get tenseSubjunctiveImperfect;
+
+  /// No description provided for @tenseImperative.
+  ///
+  /// In de, this message translates to:
+  /// **'Imperativ'**
+  String get tenseImperative;
+
+  /// No description provided for @tensePastParticiple.
+  ///
+  /// In de, this message translates to:
+  /// **'Partizip Perfekt'**
+  String get tensePastParticiple;
+
+  /// No description provided for @tensePresentParticiple.
+  ///
+  /// In de, this message translates to:
+  /// **'Partizip Präsens'**
+  String get tensePresentParticiple;
 }
 
 class _AppLocalizationsDelegate

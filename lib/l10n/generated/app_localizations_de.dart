@@ -81,4 +81,44 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get listen => 'Anhören';
+
+  @override
+  String conjugations(String template) {
+    return 'Konjugationen (über: $template)';
+  }
+
+  @override
+  String conjugationLoadError(Object error) {
+    return 'Konjugation leider nicht ladbar: $error';
+  }
+
+  @override
+  String get tenseIndicativePresent => 'Indikativ Présent';
+
+  @override
+  String get tenseIndicativeImperfect => 'Indikativ Imparfait';
+
+  @override
+  String get tenseIndicativeSimplePast => 'Indikativ Passé simple';
+
+  @override
+  String get tenseIndicativeFuture => 'Indikativ Futur simple';
+
+  @override
+  String get tenseConditionalPresent => 'Konditional Présent';
+
+  @override
+  String get tenseSubjunctivePresent => 'Konjunktiv Présent';
+
+  @override
+  String get tenseSubjunctiveImperfect => 'Konjunktiv Imperfekt';
+
+  @override
+  String get tenseImperative => 'Imperativ';
+
+  @override
+  String get tensePastParticiple => 'Partizip Perfekt';
+
+  @override
+  String get tensePresentParticiple => 'Partizip Präsens';
 }

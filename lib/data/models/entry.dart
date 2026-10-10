@@ -19,6 +19,7 @@ class Entry {
     this.ipa,
     this.audioUrl,
     this.auxiliary,
+    this.template,
   });
 
   /// The unique identifier of the entry.
@@ -44,6 +45,9 @@ class Entry {
 
   /// The auxiliary verb used for compound tenses, if applicable.
   final String? auxiliary;
+
+  /// The conjugation template of a verb, if it has one.
+  final String? template;
 
   /// The individual meanings, each with its translations and definitions.
   final List<Sense> senses;
